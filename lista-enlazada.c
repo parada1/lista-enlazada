@@ -1,36 +1,49 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct  nodo {
-    int val;
-    struct node * sig;
+typedef struct elemento
+{
+    int dato;
+    struct elemento *siguiente;
 }nodo_t;
 
-int main()
-{   //Se crean 4 nodos en memoria, sin valores no enlazados
-    nodo_t *cabeza = (nodo_t*) malloc(sizeof(nodo_t));    
-    nodo_t *nodoa =  (nodo_t*) malloc(sizeof(nodo_t));
-    nodo_t *nodob =  (nodo_t*) malloc(sizeof(nodo_t));
-    nodo_t *nodoc =  (nodo_t*) malloc(sizeof(nodo_t));
-    nodo_t *nodo_actual;
-    //Asignar valores.
-
-    cabeza->sig = nodoa;
-    nodoa->sig  = nodob;
-    nodob->sig  = nodoc;
-    nodoc->sig  = NULL;
-
-    cabeza->val = 1;
-    nodoa->val  = 2;
-    nodob->val  = 3;
-    nodoc->val  = 4;
-
-    nodo_actual=cabeza;
-    while(nodo_actual->sig!=NULL){
-        printf("Valor = %d\n", nodo_actual->val);
-        nodo_actual = nodo_actual->sig;
-
-    }
-
+nodo_t *crea_lista(){
+    nodo_t *cabeza = NULL;
+    return(cabeza);
 
 }
+nodo_t *crear_nodo (int valor){
+    nodo_t *a;
+    a=malloc(sizeof(nodo_t));
+    a->dato=valor;
+    a->siguiente=NULL;
+    return(a);
+}
+
+void insertar_al_inicio(nodo_t **cabeza, int valor){
+    nodo_t *nuevo;
+    nuevo = crear_nodo(valor);
+    nuevo->siguiente = *cabeza;
+    *cabeza = nuevo;
+
+}
+
+void imprimir_lista(nodo_t *cabeza){
+    nodo_t *actual;
+    printf("La lista es:\n");
+    for(actual=cabeza;actual!=NULL;actual=actual->siguiente){
+        printf("%d\n", actual->dato);
+    }
+
+}
+
+int main(){
+    nodo_t *cabeza = crea_lista();
+    int i;
+    int valor;
+    for(i=0;i<100;i++){
+        insertar_al_inicio(&cabeza,i);
+    }
+    imprimir_lista(cabeza);
+}
+
