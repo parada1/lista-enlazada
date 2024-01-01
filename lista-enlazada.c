@@ -11,6 +11,7 @@ nodo_t *crea_lista(){
     return(cabeza);
 
 }
+
 nodo_t *crear_nodo (int valor){
     nodo_t *a;
     a=malloc(sizeof(nodo_t));
