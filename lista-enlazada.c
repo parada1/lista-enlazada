@@ -1,8 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct elemento
-{
+typedef struct elemento{
     int dato;
     struct elemento *siguiente;
 }nodo_t;
@@ -25,7 +24,6 @@ void insertar_al_inicio(nodo_t **cabeza, int valor){
     nuevo = crear_nodo(valor);
     nuevo->siguiente = *cabeza;
     *cabeza = nuevo;
-
 }
 
 void imprimir_lista(nodo_t *cabeza){
@@ -34,7 +32,6 @@ void imprimir_lista(nodo_t *cabeza){
     for(actual=cabeza;actual!=NULL;actual=actual->siguiente){
         printf("%d\n", actual->dato);
     }
-
 }
 
 int main(){
